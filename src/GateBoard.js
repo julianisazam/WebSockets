@@ -11,7 +11,7 @@ const GateBoard = () => {
 const [gateData, setGateData] = useState([]);
 useEffect(() => {
 
-const socket = new SockJS('http://localhost:8080/gs-guide-websocket');
+const socket = new SockJS('http://localhost:8080/air-websocket');
 const stompClient = Stomp.over(socket); 
 
 stompClient.connect({}, () => {
@@ -42,11 +42,11 @@ return (
 <TableHead>
 <TableRow>
 {/* Encabezados de la tabla */}
-<TableCell>Gate</TableCell>
+<TableCell>Latitude</TableCell>
 <TableCell>Flight Number</TableCell>
-<TableCell>Destination</TableCell>
-<TableCell>Departure Time</TableCell>
-<TableCell>Status</TableCell>
+<TableCell>Heading</TableCell>
+<TableCell>AirSpeed</TableCell>
+<TableCell>altitude</TableCell>
 </TableRow>
 </TableHead>
 <TableBody>
@@ -54,12 +54,12 @@ return (
 {gateData.map((gateInfo, index) => (
 <TableRow key={index}>
 {/* Celdas con los datos de cada puerta */}
-<TableCell>{gateInfo.gate}</TableCell>
+<TableCell>{gateInfo.latitude}</TableCell>
 
 <TableCell>{gateInfo.flightNumber}</TableCell>
-<TableCell>{gateInfo.destination}</TableCell>
-<TableCell>{gateInfo.departureTime}</TableCell>
-<TableCell>{gateInfo.status}</TableCell>
+<TableCell>{gateInfo.heading}</TableCell>
+<TableCell>{gateInfo.airSpeed}</TableCell>
+<TableCell>{gateInfo.altitude}</TableCell>
 </TableRow>
 ))}
 </TableBody>
