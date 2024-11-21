@@ -13,6 +13,7 @@ import {
 import GateForm from "./GateForm";
 
 const GateBoard = () => {
+
   const [flightData, setFlightData] = useState([]);
   useEffect(() => {
     const socket = new SockJS("http://localhost:8080/air-websocket");
@@ -24,7 +25,7 @@ const GateBoard = () => {
           const updatedFlight = JSON.parse(message.body);
           setFlightData((prevData) => {
             const updatedData = prevData.filter(
-              (data) => data.flight !== updatedFlight.flight
+              (data) => data.flightCode !== updatedFlight.flightCode
             );
             return [...updatedData, updatedFlight];
           });
